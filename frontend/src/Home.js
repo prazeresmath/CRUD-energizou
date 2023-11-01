@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
 
@@ -10,6 +10,15 @@ function Home() {
         .then(res => setData(res.data))
         .catch(err => console.log(err));
     })
+
+    const navigate = useNavigate();
+    const handleDelete = (id) => {
+        axios.delete('http://localhost:8081/delete/'+ id) // use 'id' instead of 'idCliente'
+        .then(res => navigate('/'))
+        .catch(err => console.log(err));
+    }
+    
+
     return (
         <div className='d-flex justify-content-center align-items-center bg-dark vh-100'>
             <div className='bg-white rounded w-70 p-3'>
@@ -35,8 +44,8 @@ function Home() {
                                 <td>{d.email}</td>
                                 <td>{d.fone}</td>
                                 <td>
-                                    <button className='btn btn-sm btn-primary'>Update</button>
-                                    <button className='btn btn-sm btn-danger'>Delete</button>
+                                    <Link to={`/update/${d.idCliente}`} className='btn btn-sm btn-primary'>Update</Link>
+                                    <button onClick={e => handleDelete(d.idCliente)} className='btn btn-sm btn-danger'>Delete</button>
                                 </td>
                             </tr>
                         ))}
