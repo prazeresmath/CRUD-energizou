@@ -13,7 +13,7 @@ function Home() {
 
     const navigate = useNavigate();
     const handleDelete = (id) => {
-        axios.delete('http://localhost:8081/delete/'+ id) // use 'id' instead of 'idCliente'
+        axios.delete('http://localhost:8081/delete/'+ id)
         .then(res => navigate('/'))
         .catch(err => console.log(err));
     }
