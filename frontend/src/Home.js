@@ -21,17 +21,17 @@ function Home() {
 
     return (
         <div className='d-flex justify-content-center align-items-center bg-dark vh-100'>
-            <div className='bg-white rounded w-70 p-3'>
+            <div className='bg-white rounded w-90 p-3'>
                 <h2>crud</h2>
-                <Link to="/create" className='btn btn-success'>Add +</Link>
+                <Link to="/create" className='btn btn-success'>Adicionar +</Link>
                 <table className='table'>
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>Número</th>
+                            <th>Email</th>
                             <th>CEP</th>
-                            <th>endereco</th>
-                            <th>email</th>
-                            <th>fone</th>
+                            <th>Endereço</th>
                             <td>ação</td>
                         </tr>
                     </thead>
@@ -39,13 +39,13 @@ function Home() {
                         {data.map( (d, i) => (
                             <tr key={i}>
                                 <td>{d.clienteNome}</td>
+                                <td>{d.fone}</td>
+                                <td>{d.email}</td>
                                 <td>{d.CEP}</td>
                                 <td>{d.endereco}</td>
-                                <td>{d.email}</td>
-                                <td>{d.fone}</td>
                                 <td>
-                                    <Link to={`/update/${d.idCliente}`} className='btn btn-sm btn-primary'>Update</Link>
-                                    <button onClick={e => handleDelete(d.idCliente)} className='btn btn-sm btn-danger'>Delete</button>
+                                    <Link to={`/update/${d.idCliente}`} className='btn btn-sm btn-primary'>Atualizar</Link>
+                                    <button onClick={e => handleDelete(d.idCliente)} className='btn btn-sm btn-danger'>Deletar</button>
                                 </td>
                             </tr>
                         ))}
